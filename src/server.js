@@ -4,9 +4,19 @@ const userRoutes = require('./routes/userRoutes');
 const db = require('./config/database');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// CORS Middleware
+app.use(
+  cors({
+    origin: '*', // In production, replace with your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
 // Middleware
 app.use(bodyParser.json());
